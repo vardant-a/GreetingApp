@@ -9,10 +9,6 @@ import UIKit
 
 final class GreetingViewController: UIViewController {
     
-    // MARK: - Private properties [MODEL]
-    
-    private var person: Person!
-    
     // MARK: - Private lazy Properties
     
     private lazy var greetingLabel = UILabel()
@@ -36,10 +32,10 @@ final class GreetingViewController: UIViewController {
 
 private extension GreetingViewController {
     func setupView() {
-        view.addSubview(greetingLabel)
-        greetingLabel.text = "Hello"
-        person = Person(name: "Ray", lastName: "Dog")
         view.backgroundColor = .gray
+        greetingLabel.text = "Hello"
+        
+        view.addSubview(greetingLabel)
         setupLayout()
     }
 }

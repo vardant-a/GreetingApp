@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol GreetingViewProtocol: AnyObject {
+    func setGreeting(_ greeting: String)
+}
+
 final class GreetingViewController: UIViewController {
+    
+    private var presenter: GreetingPresentalProtocol!
     
     // MARK: - Private lazy Properties
     
@@ -25,6 +31,7 @@ final class GreetingViewController: UIViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
+        presenter.showGreeting()
     }
 }
 
@@ -33,10 +40,19 @@ final class GreetingViewController: UIViewController {
 private extension GreetingViewController {
     func setupView() {
         view.backgroundColor = .gray
-        greetingLabel.text = "Hello"
-        
+        greetingLabel.text = "Please, tap to Screen"
+        presenter = GreetingPresenter(
+            view: self,
+            person: Person(name: "Ray", lastName: "Puk")
+        )
         view.addSubview(greetingLabel)
         setupLayout()
+    }
+}
+
+extension GreetingViewController: GreetingViewProtocol {
+    func setGreeting(_ greeting: String) {
+        greetingLabel.text = greeting
     }
 }
  

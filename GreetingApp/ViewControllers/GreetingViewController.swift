@@ -29,6 +29,8 @@ final class GreetingViewController: UIViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
+        
+        greetingLabel.text = "Hello, \(person.name) \(person.lastName)"
     }
 }
 
@@ -36,10 +38,12 @@ final class GreetingViewController: UIViewController {
 
 private extension GreetingViewController {
     func setupView() {
-        view.addSubview(greetingLabel)
-        greetingLabel.text = "Hello"
-        person = Person(name: "Ray", lastName: "Dog")
         view.backgroundColor = .gray
+        
+        person = Person(name: "Ray", lastName: "Dog")
+        greetingLabel.text = "Hello"
+        
+        view.addSubview(greetingLabel)
         setupLayout()
     }
 }
